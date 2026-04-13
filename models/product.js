@@ -5,10 +5,12 @@ const Schema = mongoose.Schema;
 const productSchema = new Schema({
   name: String,
   price: Number,
-  description: String,
+  image: String,
+  category: String,
+  
   inStock: Boolean
 });
 
 const Product = mongoose.model("Product", productSchema);
 
-module.exports = Product;
+module.exports = Product; 

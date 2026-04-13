@@ -56,15 +56,18 @@ productRouter.delete("/:id", async (req, res) => {
 
 productRouter.put("/:id", async (req, res) => {
   try {
-    let result = await Product.findByIdAndUpdate(
-      { _id: req.params.id },
-      { $set: { ...req.body } }
+    const result = await Product.findByIdAndUpdate(
+      req.params.id,
+      { $set: req.body },
+      { new: true }
     );
-    res.send({ msg: " product Is Updated" });
+
+    res.send(result);
   } catch (error) {
     console.log(error);
-    res.status(500).send({ msg: "error adding product" });
+    res.status(500).send({ msg: "update failed" });
   }
+
 });
 
 module.exports = productRouter;
